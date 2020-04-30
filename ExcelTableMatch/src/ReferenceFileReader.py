@@ -1,10 +1,10 @@
 import csv
 import sys
 from typing import List
-from BaseFileReader import BaseFileReader
-from ReferenceRow import ReferenceRow
-from ReferenceHeader import ReferenceHeader
-from ReferenceFile import ReferenceFile
+from .BaseFileReader import BaseFileReader
+from .ReferenceRow import ReferenceRow
+from .ReferenceHeader import ReferenceHeader
+from .ReferenceFile import ReferenceFile
 
 
 class ReferenceFileReader(BaseFileReader):

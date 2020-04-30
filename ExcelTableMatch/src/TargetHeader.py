@@ -1,5 +1,5 @@
-from BaseHeader import BaseHeader
-from HeaderElement import HeaderElement
+from .BaseHeader import BaseHeader
+from .HeaderElement import HeaderElement
 
 class TargetHeader(BaseHeader):
     def __init__(self, row):

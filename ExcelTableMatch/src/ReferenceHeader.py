@@ -1,5 +1,5 @@
-from BaseHeader import BaseHeader
-from HeaderElement import HeaderElement
+from .BaseHeader import BaseHeader
+from .HeaderElement import HeaderElement
 
 
 class ReferenceHeader(BaseHeader):
