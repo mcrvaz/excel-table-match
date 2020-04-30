@@ -1,5 +1,5 @@
 import unittest
-from ExcelTableMatch.src.TargetRow import TargetRow
+from excel_table_match.src.target_row import TargetRow
 
 
 class TargetRowMethods(unittest.TestCase):

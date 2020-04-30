@@ -1,5 +1,5 @@
 from typing import List
-from .ReferenceRow import ReferenceRow
+from .reference_row import ReferenceRow
 
 class ReferenceFile:
     def __init__(self, referenceRows : List[ReferenceRow]):

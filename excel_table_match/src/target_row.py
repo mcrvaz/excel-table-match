@@ -1,5 +1,5 @@
 from typing import List
-from .ReferenceFile import ReferenceFile
+from .reference_file import ReferenceFile
 
 
 class TargetRow:

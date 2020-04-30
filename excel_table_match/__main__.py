@@ -1,11 +1,11 @@
 from pathlib import Path
-from ExcelTableMatch.src.ReferenceFileReader import ReferenceFileReader
-from ExcelTableMatch.src.ReferenceFile import ReferenceFile
-from ExcelTableMatch.src.TargetFileReader import TargetFileReader
-from ExcelTableMatch.src.TargetFile import TargetFile
+from excel_table_match.src.reference_file_reader import ReferenceFileReader
+from excel_table_match.src.reference_file import ReferenceFile
+from excel_table_match.src.target_file_reader import TargetFileReader
+from excel_table_match.src.target_file import TargetFile
 
 if __name__ == '__main__':
-    filePathRoot = Path.cwd() / 'ExcelTableMatch' / 'files'
+    filePathRoot = Path.cwd() / 'excel_table_match' / 'files'
     referenceFileReader: ReferenceFileReader = ReferenceFileReader(
         filePathRoot / 'ANALISE_CARTEIRA.csv'
     )
