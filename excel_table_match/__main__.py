@@ -6,17 +6,18 @@ from excel_table_match.src.target_file import TargetFile
 
 if __name__ == '__main__':
     filePathRoot = Path.cwd() / 'excel_table_match' / 'files'
-    referenceFileReader: ReferenceFileReader = ReferenceFileReader(
-        filePathRoot / 'ANALISE_CARTEIRA.csv'
-    )
-    referenceFile: ReferenceFile = referenceFileReader.read()
-
-    targetFileReader: TargetFileReader = TargetFileReader(
-        filePathRoot / 'Arquivos recebidos PROC.csv'
-    )
-    targetFile: TargetFile = targetFileReader.read()
+    referenceFile: ReferenceFile = ReferenceFileReader(
+        filePathRoot / 'example-reference.csv'
+    ).read()
+    targetFile: TargetFile = TargetFileReader(
+        filePathRoot / 'example-target.csv'
+    ).read()
 
     for row in targetFile.targetRows:
         row.get_matches(referenceFile)
         print(row)
+    
+    for row in targetFile.targetRows:
+        if (row.contratos and row.grupoEconomicos and row.tipos):
+            print("Success")
     pass

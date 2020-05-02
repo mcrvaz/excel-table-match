@@ -23,7 +23,7 @@ class TargetFileReader(BaseFileReader):
         return TargetFile(result)
 
     def create_target_file(self, row, header: TargetHeader) -> TargetRow:
-        return TargetRow(
+        return TargetRow.from_file(
             row[header.date_created.index],
             row[header.file_name.index],
             row[header.folder_path.index],
