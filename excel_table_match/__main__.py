@@ -16,8 +16,8 @@ if __name__ == '__main__':
     for row in targetFile.targetRows:
         row.get_matches(referenceFile)
         print(row)
-    
+
     for row in targetFile.targetRows:
-        if (row.contratos and row.grupoEconomicos and row.tipos):
+        if (row.apolices and row.grupoEconomicos and row.tipos):
             print("Success")
     pass

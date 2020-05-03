@@ -22,13 +22,15 @@ def compare_rows(row1, row2, msg=None):
 
 
 class TestTargetRowMethods(unittest.TestCase):
+    def setUp(self):
+        self.filePathRoot: str = Path.cwd() / 'excel_table_match' / 'tests' / 'files'
+
     def test_one_exact_match(self):
-        filePathRoot: str = Path.cwd() / 'excel_table_match' / 'tests' / 'files'
         referenceFile: ReferenceFile = ReferenceFileReader(
-            filePathRoot / 'example-reference.csv'
+            self.filePathRoot / 'example-reference.csv'
         ).read()
         targetFile: TargetFile = TargetFileReader(
-            filePathRoot / 'example-target.csv'
+            self.filePathRoot / 'example-target.csv'
         ).read()
 
         targetFile.get_matches(referenceFile)
@@ -38,12 +40,11 @@ class TestTargetRowMethods(unittest.TestCase):
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
     def test_two_exact_matches(self):
-        filePathRoot: str = Path.cwd() / 'excel_table_match' / 'tests' / 'files'
         referenceFile: ReferenceFile = ReferenceFileReader(
-            filePathRoot / 'example-reference.csv'
+            self.filePathRoot / 'example-reference.csv'
         ).read()
         targetFile: TargetFile = TargetFileReader(
-            filePathRoot / 'example-target2.csv'
+            self.filePathRoot / 'example-target2.csv'
         ).read()
 
         targetFile.get_matches(referenceFile)
@@ -53,18 +54,45 @@ class TestTargetRowMethods(unittest.TestCase):
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
-    def test_one_partial_match(self):
-        filePathRoot: str = Path.cwd() / 'excel_table_match' / 'tests' / 'files'
+    def test_one_partial_match_missing_tipo(self):
         referenceFile: ReferenceFile = ReferenceFileReader(
-            filePathRoot / 'example-reference.csv'
+            self.filePathRoot / 'example-reference.csv'
         ).read()
         targetFile: TargetFile = TargetFileReader(
-            filePathRoot / 'example-target3.csv'
+            self.filePathRoot / 'example-target3.csv'
         ).read()
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
             TargetRow({'306840'}, {'BRADESCO SPG'}, set())
+        ]
+        self.assertTrue(compare_rows(targetFile.targetRows, expected))
+
+    def test_one_partial_match_missing_grupo_economico(self):
+        referenceFile: ReferenceFile = ReferenceFileReader(
+            self.filePathRoot / 'example-reference.csv'
+        ).read()
+        targetFile: TargetFile = TargetFileReader(
+            self.filePathRoot / 'example-target4.csv'
+        ).read()
+
+        targetFile.get_matches(referenceFile)
+        expected: List[TargetRow] = [
+            TargetRow({'306840'}, set(), {'BOLETO'})
+        ]
+        self.assertTrue(compare_rows(targetFile.targetRows, expected))
+
+    def test_one_exact_match_two_candidates(self):
+        referenceFile: ReferenceFile = ReferenceFileReader(
+            self.filePathRoot / 'example-reference2.csv'
+        ).read()
+        targetFile: TargetFile = TargetFileReader(
+            self.filePathRoot / 'example-target5.csv'
+        ).read()
+
+        targetFile.get_matches(referenceFile)
+        expected: List[TargetRow] = [
+            TargetRow({'306841'}, {'BRADESCO SAUDE'}, {'FATURA'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
