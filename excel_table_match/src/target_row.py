@@ -1,6 +1,6 @@
 from typing import List
 from .reference_file import ReferenceFile
-
+from .utils.string_utils import unicode_contains
 
 class TargetRow:
     def __init__(self, contratos, grupoEconomicos, tipos):
@@ -30,13 +30,11 @@ class TargetRow:
             if (row.apolice in contratoCandidates):
                 filteredGrupoEconomicos.add(row.grupoEconomico)
                 filteredTipos.add(row.tipo)
-        grupoEconomicoCandidates = self.__get_grupoEconomico_matches__(
+        self.apolices = contratoCandidates
+        self.grupoEconomicos = self.__get_grupoEconomico_matches__(
             filteredGrupoEconomicos
         )
-        tipoCandidates = self.__get_tipo_matches__(filteredTipos)
-        self.apolices = contratoCandidates
-        self.grupoEconomicos = grupoEconomicoCandidates
-        self.tipos = tipoCandidates
+        self.tipos = self.__get_tipo_matches__(filteredTipos)
         self.__filter_matches__(referenceFile)
 
     def __filter_matches__(self, referenceFile: ReferenceFile):
@@ -57,14 +55,14 @@ class TargetRow:
     def __get_grupoEconomico_matches__(self, grupoEconomicoList: List[str]) -> List[str]:
         matches = set()
         for grupoEconomico in grupoEconomicoList:
-            if grupoEconomico and grupoEconomico in self.fullFileName:
+            if grupoEconomico and unicode_contains(self.fullFileName, grupoEconomico):
                 matches.add(grupoEconomico)
         return matches
 
     def __get_tipo_matches__(self, tipoList: List[str]) -> List[str]:
         matches = set()
         for tipo in tipoList:
-            if tipo and tipo in self.tipo:
+            if tipo and unicode_contains(self.tipo, tipo):
                 matches.add(tipo)
         return matches
 
