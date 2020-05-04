@@ -110,6 +110,20 @@ class TestTargetRowMethods(unittest.TestCase):
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
+    def test_one_exact_match_trim(self):
+        referenceFile: ReferenceFile = ReferenceFileReader(
+            self.filePathRoot / 'example-reference4.csv'
+        ).read()
+        targetFile: TargetFile = TargetFileReader(
+            self.filePathRoot / 'example-target6.csv'
+        ).read()
+
+        targetFile.get_matches(referenceFile)
+        expected: List[TargetRow] = [
+            TargetRow({'306840'}, {'ITAU'}, {'FATURA'})
+        ]
+        self.assertTrue(compare_rows(targetFile.targetRows, expected))
+
 
 if __name__ == '__main__':
     unittest.main()

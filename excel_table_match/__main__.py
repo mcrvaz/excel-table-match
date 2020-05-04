@@ -7,10 +7,10 @@ from excel_table_match.src.target_file import TargetFile
 if __name__ == '__main__':
     filePathRoot = Path.cwd() / 'excel_table_match' / 'files'
     referenceFile: ReferenceFile = ReferenceFileReader(
-        filePathRoot / 'example-reference.csv'
+        filePathRoot / 'exemplocontrole (2).csv'
     ).read()
     targetFile: TargetFile = TargetFileReader(
-        filePathRoot / 'example-target.csv'
+        filePathRoot / 'target.csv'
     ).read()
 
     for row in targetFile.targetRows:

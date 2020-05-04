@@ -48,22 +48,25 @@ class TargetRow:
     def __get_apolice_matches__(self, apoliceList: List[str]) -> List[str]:
         matches = set()
         for apolice in apoliceList:
-            if apolice in self.fullFileName:
-                matches.add(apolice)
+            _apolice = apolice.strip() if apolice else ''
+            if _apolice and _apolice in self.fullFileName:
+                matches.add(_apolice)
         return matches
 
     def __get_grupoEconomico_matches__(self, grupoEconomicoList: List[str]) -> List[str]:
         matches = set()
         for grupoEconomico in grupoEconomicoList:
-            if grupoEconomico and unicode_contains(self.fullFileName, grupoEconomico):
-                matches.add(grupoEconomico)
+            _grupoEconomico = grupoEconomico.strip() if grupoEconomico else ''
+            if _grupoEconomico and unicode_contains(self.fullFileName, _grupoEconomico):
+                matches.add(_grupoEconomico)
         return matches
 
     def __get_tipo_matches__(self, tipoList: List[str]) -> List[str]:
         matches = set()
         for tipo in tipoList:
-            if tipo and unicode_contains(self.tipo, tipo):
-                matches.add(tipo)
+            _tipo = tipo.strip() if tipo else ''
+            if _tipo and unicode_contains(self.tipo, _tipo):
+                matches.add(_tipo)
         return matches
 
     def __eq__(self, row):
