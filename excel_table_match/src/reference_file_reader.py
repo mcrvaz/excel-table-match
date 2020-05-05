@@ -14,7 +14,7 @@ class ReferenceFileReader(BaseFileReader):
     def read(self) -> ReferenceFile:
         result = list()
         with open(self.fileName, encoding='utf-8-sig') as f:
-            reader = csv.reader(f, 'excel', delimiter=';')
+            reader = csv.reader(f, dialect='excel', delimiter=';')
             header: ReferenceHeader = ReferenceHeader(self.get_header(reader))
             for row in reader:
                 if (self.is_row_empty(row)):
@@ -25,6 +25,6 @@ class ReferenceFileReader(BaseFileReader):
     def create_reference_file(self, row, header: ReferenceHeader) -> ReferenceRow:
         return ReferenceRow(
             row[header.apolice.index],
-            row[header.grupoEconomico.index],
+            row[header.operadora.index],
             row[header.tipo.index],
         )

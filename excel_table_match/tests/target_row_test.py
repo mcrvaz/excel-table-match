@@ -10,13 +10,20 @@ from excel_table_match.src.target_file_reader import TargetFileReader
 from excel_table_match.src.target_file import TargetFile
 
 
-def compare_rows(row1, row2, msg=None):
-    if len(row1) != len(row2):
+def compare_rows(rows1, rows2, msg=None):
+    if len(rows1) != len(rows2):
         return False
-    if len(row1) == 0:
+    if len(rows1) == 0:
         return True
-    for row in row1:
-        if not row2.__contains__(row):
+    for row in rows1:
+        if not rows2.__contains__(row):
+            return False
+    return True
+
+
+def contains_rows(rows1, rows2, msg=None):
+    for row in rows1:
+        if row not in rows2:
             return False
     return True
 
@@ -38,6 +45,20 @@ class TestTargetRowMethods(unittest.TestCase):
             TargetRow({'306840'}, {'BRADESCO SPG'}, {'BOLETO'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
+
+    def test_one_exact_match_2(self):
+        referenceFile: ReferenceFile = ReferenceFileReader(
+            self.filePathRoot / 'example-reference5.csv'
+        ).read()
+        targetFile: TargetFile = TargetFileReader(
+            self.filePathRoot / 'example-target7.csv'
+        ).read()
+
+        targetFile.get_matches(referenceFile)
+        expected: List[TargetRow] = [
+            TargetRow({'631114'}, {'ODONTOPREV'}, {'FATURA'})
+        ]
+        self.assertTrue(contains_rows(expected, targetFile.targetRows))
 
     def test_two_exact_matches(self):
         referenceFile: ReferenceFile = ReferenceFileReader(

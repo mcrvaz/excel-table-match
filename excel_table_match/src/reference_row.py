@@ -1,5 +1,5 @@
 class ReferenceRow:
-    def __init__(self, apolice, grupoEconomico, tipo):
+    def __init__(self, apolice, operadora, tipo):
         self.apolice = apolice
-        self.grupoEconomico = grupoEconomico
+        self.operadora = operadora
         self.tipo = tipo

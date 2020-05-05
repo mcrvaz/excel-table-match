@@ -1,0 +1,1 @@
+C:\Users\Marcello\AppData\Local\Programs\Python\Python38-32\python.exe -m excel_table_match.__main__

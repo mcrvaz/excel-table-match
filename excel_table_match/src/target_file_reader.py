@@ -19,10 +19,10 @@ class TargetFileReader(BaseFileReader):
             for row in reader:
                 if (self.is_row_empty(row)):
                     continue
-                result.append(self.create_target_file(row, header))
+                result.append(self.create_target_row(row, header))
         return TargetFile(result)
 
-    def create_target_file(self, row, header: TargetHeader) -> TargetRow:
+    def create_target_row(self, row, header: TargetHeader) -> TargetRow:
         return TargetRow.from_file(
             row[header.date_created.index],
             row[header.file_name.index],

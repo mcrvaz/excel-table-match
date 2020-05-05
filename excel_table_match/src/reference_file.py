@@ -5,5 +5,5 @@ class ReferenceFile:
     def __init__(self, referenceRows : List[ReferenceRow]):
         self.referenceRows = referenceRows
         self.apolices = list(map(lambda x: x.apolice, filter(lambda x: x.apolice, referenceRows)))
-        self.grupoEconomicos = list(map(lambda x: x.grupoEconomico, filter(lambda x: x.grupoEconomico, referenceRows)))
+        self.operadoras = list(map(lambda x: x.operadora, filter(lambda x: x.operadora, referenceRows)))
         self.tipos = list(map(lambda x: x.tipo, filter(lambda x: x.tipo, referenceRows)))
