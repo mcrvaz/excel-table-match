@@ -11,14 +11,20 @@ class ResultRow:
         contratos: Set[str],
         operadoras: Set[str],
         tipos: Set[str],
+        grupoEconomicos: Set[str],
+        subContratos: Set[str],
         error: bool
     ):
         self.dateCreated: str = dateCreated
         self.fileName: str = fileName
         self.fileFolder: str = fileFolder
+
         self.apolices: Set[str] = contratos
         self.operadoras: Set[str] = operadoras
         self.tipos: Set[str] = tipos
+        self.grupoEconomicos: Set[str] = grupoEconomicos
+        self.subContratos: Set[str] = subContratos
+
         self.error: bool = error
 
     @classmethod
@@ -30,6 +36,8 @@ class ResultRow:
             row.apolices,
             row.operadoras,
             row.tipos,
+            row.grupoEconomicos,
+            row.subContratos,
             row.error
         )
 
@@ -41,5 +49,7 @@ class ResultRow:
             self.apolices,
             self.operadoras,
             self.tipos,
+            self.grupoEconomicos,
+            self.subContratos,
             self.error
         ])

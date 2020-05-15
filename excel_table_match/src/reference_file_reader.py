@@ -27,4 +27,7 @@ class ReferenceFileReader(BaseFileReader):
             row[header.apolice.index],
             row[header.operadora.index],
             row[header.tipo.index],
+            row[header.grupoEconomico.index],
+            row[header.subContrato.index],
+            row[header.rotina.index]
         )

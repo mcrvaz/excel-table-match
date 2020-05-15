@@ -12,17 +12,26 @@ class ResultHeader:
         self.folderPath: HeaderElement = HeaderElement(
             2, "FileFolder"
         )
-        self.apolices: HeaderElement = HeaderElement(
-            3, "Apolices"
+        self.apolice: HeaderElement = HeaderElement(
+            3, "CONTRATO"
         )
-        self.operadoras: HeaderElement = HeaderElement(
-            4, "Grupos Economicos"
+        self.rotina: HeaderElement = HeaderElement(
+            4, "ROTINA"
         )
-        self.tipos: HeaderElement = HeaderElement(
-            5, "Tipos"
+        self.operadora: HeaderElement = HeaderElement(
+            5, "OPERADORA"
+        )
+        self.grupoEconomico: HeaderElement = HeaderElement(
+            6, "GRUPO ECONOMICO"
+        )
+        self.subContrato: HeaderElement = HeaderElement(
+            7, "SUBS"
+        )
+        self.tipo: HeaderElement = HeaderElement(
+            8, "TIPO DE ARQUIVO"
         )
         self.error: HeaderElement = HeaderElement(
-            6, "Error"
+            9, "Error"
         )
         self.__initialize_header__()
 
@@ -31,11 +40,17 @@ class ResultHeader:
 
     def __initialize_header__(self):
         header = []
+
         header.insert(self.dateCreated.index, self.dateCreated.content)
         header.insert(self.fileName.index, self.fileName.content)
         header.insert(self.folderPath.index, self.folderPath.content)
-        header.insert(self.apolices.index, self.apolices.content)
-        header.insert(self.operadoras.index, self.operadoras.content)
-        header.insert(self.tipos.index, self.tipos.content)
+
+        header.insert(self.apolice.index, self.apolice.content)
+        header.insert(self.rotina.index, self.rotina.content)
+        header.insert(self.operadora.index, self.operadora.content)
+        header.insert(self.grupoEconomico.index, self.grupoEconomico.content)
+        header.insert(self.subContrato.index, self.subContrato.content)
+        header.insert(self.tipo.index, self.tipo.content)
+
         header.insert(self.error.index, self.error.content)
         self.header = header

@@ -24,6 +24,7 @@ def compare_rows(rows1, rows2, msg=None):
 def contains_rows(rows1, rows2, msg=None):
     for row in rows1:
         if row not in rows2:
+            print(row)
             return False
     return True
 
@@ -42,7 +43,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306840'}, {'BRADESCO SPG'}, {'BOLETO'})
+            TargetRow({'306840'}, {'BRADESCO SPG'}, {'BOLETO'}, {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
@@ -56,7 +57,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'631114'}, {'ODONTOPREV'}, {'FATURA'})
+            TargetRow({'631114'}, {'ODONTOPREV'}, {'FATURA'}, {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(contains_rows(expected, targetFile.targetRows))
 
