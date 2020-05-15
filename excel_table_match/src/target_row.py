@@ -40,11 +40,9 @@ class TargetRow:
         return self(set(), set(), set(), set(), set(), dateCreated, fileName, fileFolder)
 
     def get_matches(self, referenceFile: ReferenceFile):
-        t1 = time.perf_counter()
         contratoCandidates = self.__get_attribute_matches__(
             referenceFile.apolices
         )
-        t2 = time.perf_counter() - t1
         filteredOperadoras = set()
         filteredTipos = set()
         filteredGrupoEconomicos = set()
@@ -55,20 +53,13 @@ class TargetRow:
                 filteredTipos.add(row.tipo)
                 filteredGrupoEconomicos.add(row.grupoEconomico)
                 filteredSubContratos.add(row.subContrato)
-        t3 = time.perf_counter() - t2
 
         self.apolices = contratoCandidates
         self.operadoras = self.__get_attribute_matches__(filteredOperadoras)
-        t4 = time.perf_counter() - t3
         self.tipos = self.__get_attribute_matches__(filteredTipos)
-        t5 = time.perf_counter() - t4
         self.grupoEconomicos = self.__get_attribute_matches__(filteredGrupoEconomicos)
-        t6 = time.perf_counter() - t5
         self.subContratos = self.__get_attribute_matches__(filteredSubContratos)
-        t7 = time.perf_counter() - t6
         self.__filter_matches__(referenceFile)
-        t8 = time.perf_counter() - t7
-        print(f't1:{t1}, t2:{t2}, t3:{t3}, t4:{t4}, t5:{t5}, t6:{t6}, t7:{t7}, t8:{t8}')
 
     def __filter_matches__(self, referenceFile: ReferenceFile):
         for ref in referenceFile.referenceRows:
@@ -92,7 +83,11 @@ class TargetRow:
         )
 
     def __get_attribute_matches__(self, attrSet: Set[str]) -> List[str]:
-        return { attr for attr in attrSet if attr and unicode_contains(self.fullFileName, attr.strip()) }
+        return {
+            x
+            for x in (y.strip() for y in attrSet if y)
+            if unicode_contains(self.fullFileName, x)
+        }
 
     def __eq__(self, row):
         return (

@@ -71,8 +71,8 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306840'}, {'BRADESCO SPG'}, {'BOLETO'}),
-            TargetRow({'306841'}, {'BRADESCO SAUDE'}, {'FATURA'})
+            TargetRow({'306840'}, {'BRADESCO SPG'}, {'BOLETO'}, {'306840'}, {'3C SERVICES'}),
+            TargetRow({'306841'}, {'BRADESCO SAUDE'}, {'FATURA'}, {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
@@ -86,7 +86,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306840'}, {'BRADESCO SPG'}, set())
+            TargetRow({'306840'}, {'BRADESCO SPG'}, set(), {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
@@ -100,7 +100,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306840'}, set(), {'BOLETO'})
+            TargetRow({'306840'}, set(), {'BOLETO'}, {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
@@ -114,7 +114,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306841'}, {'BRADESCO SAUDE'}, {'FATURA'})
+            TargetRow({'306841'}, {'BRADESCO SAUDE'}, {'FATURA'}, {'306841'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
@@ -128,7 +128,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306840'}, {'ITAU'}, {'FATURA'})
+            TargetRow({'306840'}, {'ITAU'}, {'FATURA'}, {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
@@ -142,7 +142,7 @@ class TestTargetRowMethods(unittest.TestCase):
 
         targetFile.get_matches(referenceFile)
         expected: List[TargetRow] = [
-            TargetRow({'306840'}, {'ITAU'}, {'FATURA'})
+            TargetRow({'306840'}, {'ITAU'}, {'FATURA'}, {'306840'}, {'3C SERVICES'})
         ]
         self.assertTrue(compare_rows(targetFile.targetRows, expected))
 
