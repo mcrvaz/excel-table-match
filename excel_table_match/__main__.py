@@ -20,8 +20,18 @@ if __name__ == '__main__':
         filePathRoot / 'proc.csv'
     ).read()
 
+    count = 0
+    percentage = 0
+    lastPrint = 0
+    interval = 0.01
+    rowsCount = len(targetFile.targetRows)
     for row in targetFile.targetRows:
         row.get_matches(referenceFile)
+        count += 1
+        percentage = count / rowsCount
+        if (percentage - lastPrint >= interval):
+            lastPrint = percentage
+            print(f"{percentage:.0%}")
 
     resultFile: ResultFile = ResultFile(
         ResultHeader(),

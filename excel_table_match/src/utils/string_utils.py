@@ -7,9 +7,5 @@ def unicode_contains(str1, str2) -> bool:
     return normalized2 in normalized1
 
 
-# def remove_diacritics(text):
-#     return unicodedata.normalize("NFKD", text).encode('ASCII', 'ignore')
-
 def remove_diacritics(text):
-    normalized = unicodedata.normalize("NFKD", text)
-    return "".join(c for c in normalized if unicodedata.category(c) != "Mn")
+    return unicodedata.normalize("NFKD", text).encode('ASCII', 'ignore')
